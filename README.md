@@ -66,14 +66,14 @@ This point of development sould be reflected in repository as a separate branch:
 ```
 git add .
 git commit -am 'Basic React settings.'
-git checkout -b basic-react
+git checkout -b basic_react
 git checkout master
 ```
 
 
-From now this stage of development can be restored from repository as `git checkout basic-react`.
+From now this stage of development can be restored from repository as `git checkout basic_react`.
 
-Some external software - `react-toastify` library - will be used in the project. The command to install it is `yarn add react-toastify`. 
+
 
 
 
