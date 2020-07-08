@@ -25,6 +25,7 @@ cp ../empty-react-app/package.json .
 cp ../empty-react-app/.gitignore .
 git add .
 git commit -am react-scripts
+cat ../empty-react-app/public/index.html >  public/app.html 
 yarn
 ```
 
