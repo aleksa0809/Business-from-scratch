@@ -26,12 +26,13 @@ cp ../empty-react-app/.gitignore .
 git add .
 git commit -am react-scripts
 cat ../empty-react-app/public/index.html >  public/app.html 
+cp -R ../empty-react-app/src .
 yarn
 ```
 
 Now it is necessary to setup the project for binding React abilities to `app.html` instead of `index.html`, as it is configured in default settings of `react-scripts`. It can be reached with `yarn eject` command, that unpacks the project settings and let to edit some properties. So, one line of the file `config/paths.js` must be changed:
 
-
+```
 module.exports = {
     dotenv: resolveApp('.env'),
     appPath: resolveApp('.'),
@@ -49,23 +50,25 @@ module.exports = {
     appNodeModules: resolveApp('node_modules'),
     publicUrlOrPath,
 };
+```
 
 
 Now the project can be started for debugging and developing:
 
-
+```
 yarn start
-
+```
 
 The page `app.html` will be injected with React scripts and automatically opened as `http://localhost:3000` in the default browser of local computer.
 
 This point of development sould be reflected in repository as a separate branch:
 
-
+```
 git add .
 git commit -am 'Basic React settings.'
 git checkout -b basic-react
 git checkout master
+```
 
 
 From now this stage of development can be restored from repository as `git checkout basic-react`.
