@@ -27,4 +27,25 @@ The next step is creating of a structure of the page. There are `Navbar` and `Le
 </div>
 ```
 
+Now it's time to add some router to the main part of page. There is also a `Welcome` space, that appears on the central part of page:
+
+```
+yarn add react-router-dom
+```
+
+```
+import { HashRouter, Route, Switch } from 'react-router-dom'
+const Welcome   = React.lazy(() => import('./pages/welcome'));
+...
+<div class="col-lg-9">
+  <HashRouter>
+    <Switch>
+      <Route>
+        <Welcome />
+      </Route>
+    </Switch>
+  </HashRouter>
+</div>
+```
+
 

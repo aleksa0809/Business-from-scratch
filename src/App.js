@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Navbar from "./components/navbar"
 import LeftMenu from "./components/leftmenu"
+import { HashRouter, Route, Switch } from 'react-router-dom'
+const Welcome   = React.lazy(() => import('./pages/welcome'));
 
 class App extends Component {
     render() {
@@ -13,7 +15,13 @@ class App extends Component {
                         <LeftMenu />
                     </div>
                     <div class="col-lg-9">
-                        <p>Here will be pages.</p>
+                      <HashRouter>
+                        <Switch>
+                          <Route>
+                            <Welcome />
+                          </Route>
+                        </Switch>
+                      </HashRouter>
                     </div>
                 </div>
             </div>
