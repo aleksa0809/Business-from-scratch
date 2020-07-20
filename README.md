@@ -1,4 +1,4 @@
-# A single page application for the Anna-Veronica online-shop
+# A single page application: setup and running  
 
 ## Fixing previous state of project
 
@@ -73,7 +73,7 @@ git checkout master
 
 From now this stage of development can be restored from repository as `git checkout basic_react`.
 
-
+The structure of React application is described in file app.md.
 
 
 
