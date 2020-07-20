@@ -10,12 +10,12 @@ class App extends Component {
       return  (
         <div>  
             <Navbar />
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-3">
                         <LeftMenu />
                     </div>
-                    <div class="col-lg-9">
+                    <div className="col-lg-9">
                       <HashRouter>
                         <Switch>
                           <Route path="/api/showcase" render={props=> <Showcase {...props.match.params} />} />

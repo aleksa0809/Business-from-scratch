@@ -109,7 +109,30 @@ export default function Showcase(props) {
 }
 ```
 
-Goods of online shop should be presented as cards with description, proce, image etc. Tese cards is designed as a separate component:
+Goods of online shop should be presented as cards with description, proce, image etc. Tese cards is designed as a separate component. As cards appear on pages dynamically, they will be formed with help of `AppContextProvider` component:
+
+```
+<AppContextConsumer>
+    {context=> { 
+     ...
+     const items = []  
+     for(const card of context.getShowcase(props.basket)) {
+         items.push(<Card image={card.picture && "/images/"+card.picture || "http://placehold.it/700x400"} {...card} basket={!!basket}/>)
+     }
+     ...
+     return (
+         <div className="av-page">
+             <h1>{header}</h1>
+             <div class="row">
+                 {items}
+             </div>
+         </div>
+    )}
+   }
+</AppContextConsumer>
+
+```
+
 
 
 
