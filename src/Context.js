@@ -11,9 +11,15 @@ class AppContextProvider extends Component {
     constructor(props){
         super(props)
         this.state = {
-            counter: basket.length,
+            basketCount: basket.length,
             getShowcase: (isBasket)=> {
                 return isBasket && basket || data;
+            },
+            changeBasket: (card)=> {
+                const isBasket = card.basket
+                if(isBasket && !this.state.basketCount) {this.setState({basketCount:0}); return}
+                this.setState({basketCount: isBasket && --this.state.basketCount || ++this.state.basketCount})
+                toast('The state of your basket is changed')
             }
         }
     }

@@ -2,15 +2,7 @@ import React from 'react'
 import {AppContextConsumer} from '../Context'
 import './card.css'
 
-const addToChart = (props, context)=> {
-    const {toast, updateBasket, deleteFromBasket} = context
-    const {id, basket} = props
-    if(basket) deleteFromBasket(id)
-    else updateBasket(id, props)
-    toast(basket ? 'Removed from cart' : 'Added to cart.')
-}
-
-const getButtonText = $=> $ ? 'Remove from basket' : 'Add to cart'
+const getButtonText = isBasket=> isBasket ? 'Remove from basket' : 'Add to cart'
 
 export default function Card(props) {
     console.log(props)
@@ -25,18 +17,11 @@ export default function Card(props) {
                     <h5>${props.price}</h5>
                     <p className="card-text">{props.description}</p>
                     <p className="card-text">{props.color}</p>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col1"><label>Amount</label></div>
-                            <div className="col1"><input type="number" min="1" value="1"/></div>
-                            <div className="w-100"></div>
-                        </div>
-                    </div>
                   </div>
                   <div className="card-footer">
                     <AppContextConsumer>
                         {context=> 
-                            <button onClick={$=> addToChart(props, context)}>{getButtonText(props.basket)}</button>
+                            <button onClick={e=> context.changeBasket(props)}>{getButtonText(props.basket)}</button>
                         }
                     </AppContextConsumer>
                   </div>

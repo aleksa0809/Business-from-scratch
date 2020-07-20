@@ -1,4 +1,5 @@
 import React from 'react';
+import BasketCount from './basket-count'
 import "./navbar.css"
 
 export default function Navbar() {
@@ -24,9 +25,7 @@ export default function Navbar() {
               </button>
           </div>
           <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-              <ul className="navbar-nav ml-auto basket-count" style={{color: 'white'}}>
-                <li>basket</li>
-              </ul>
+                <BasketCount />
           </div>
       </nav>
   )

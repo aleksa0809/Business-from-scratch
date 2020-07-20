@@ -109,7 +109,24 @@ export default function Showcase(props) {
 }
 ```
 
-Goods of online shop should be presented as cards with description, proce, image etc. Tese cards is designed as a separate component. As cards appear on pages dynamically, they will be formed with help of `AppContextProvider` component:
+Goods of online shop should be presented as cards with description, proce, image etc. These cards are designed as a separate component. As cards appear on pages dynamically, they will be formed with help of `AppContextProvider` component. If property `basket` is set to true, cards are parsed from localStorage, if not - from "database" stub, that is imported into the `Context` component as a simple array.
+```
+import data from './data'
+...
+let basket = window.localStorage.getItem('basket') || '[]'
+basket = JSON.parse(basket)
+...
+class AppContextProvider extends Component {
+    ...
+    this.state = {
+        counter: basket.length,
+        getShowcase: (isBasket)=> {
+            return isBasket && basket || data;
+        }
+    }
+    ...
+}
+```
 
 ```
 <AppContextConsumer>
@@ -133,6 +150,42 @@ Goods of online shop should be presented as cards with description, proce, image
 
 ```
 
+There is the `BasketCount` component, thet reflects the count of itens in users basket. This component reacts on adding items to basket or removing them.
 
+```
+    <AppContextConsumer>
+      {context=> 
+          (<ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                  <a className="nav-link av-basket-count" href="#/api/query/basket">Your shopping cart ({context.basketCount} items)</a>
+              </li>
+          </ul>)
+      }
+    </AppContextConsumer>
+```
 
+The `Context` component contains a counter, and method for changing the basket. Each `Card` component of `Showcase` component contains a button for adding/removing items:
+
+```
+    <AppContextConsumer>
+        {context=> 
+            <button onClick={e=> context.changeBasket(props)}>{getButtonText(props.basket)}</button>
+        }
+    </AppContextConsumer>
+```
+
+```
+    this.state = {
+        basketCount: basket.length,
+        getShowcase: (isBasket)=> {
+            return isBasket && basket || data;
+        },
+        changeBasket: (card)=> {
+            const isBasket = card.basket
+            if(isBasket && !this.state.basketCount) return
+            this.setState({basketCount: isBasket && --this.state.basketCount || ++this.state.basketCount})
+            toast('The state of your basket is changed')
+        }
+    }
+```
 
