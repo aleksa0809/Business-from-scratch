@@ -3,6 +3,7 @@ import Navbar from "./components/navbar"
 import LeftMenu from "./components/leftmenu"
 import { HashRouter, Route, Switch } from 'react-router-dom'
 const Welcome   = React.lazy(() => import('./pages/welcome'));
+const Showcase  = React.lazy(() => import('./pages/showcase'));
 
 class App extends Component {
     render() {
@@ -17,6 +18,8 @@ class App extends Component {
                     <div class="col-lg-9">
                       <HashRouter>
                         <Switch>
+                          <Route path="/api/showcase" render={props=> <Showcase {...props.match.params} />} />
+                          <Route path="/api/basket" render={props=> <Showcase {...props.match.params} basket="true" />}/>
                           <Route>
                             <Welcome />
                           </Route>

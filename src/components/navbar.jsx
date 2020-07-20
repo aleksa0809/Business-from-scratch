@@ -1,4 +1,5 @@
 import React from 'react';
+import "./navbar.css"
 
 export default function Navbar() {
   return (
@@ -23,7 +24,7 @@ export default function Navbar() {
               </button>
           </div>
           <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-              <ul className="navbar-nav ml-auto">
+              <ul className="navbar-nav ml-auto basket-count" style={{color: 'white'}}>
                 <li>basket</li>
               </ul>
           </div>
