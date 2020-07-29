@@ -18,8 +18,9 @@ class App extends Component {
                     <div className="col-lg-9">
                       <HashRouter>
                         <Switch>
-                          <Route path="/api/showcase" render={props=> <Showcase {...props.match.params} />} />
-                          <Route path="/api/basket" render={props=> <Showcase {...props.match.params} basket="true" />}/>
+                          <Route path="/api/:sector/:size" render={props=> <Showcase {...props.match.params}/>} />
+                          <Route path="/api/toplist"       render={props=> <Showcase toplist="true"/>} />
+                          <Route path="/api/basket"        render={props=> <Showcase basket="true" />}/>
                           <Route>
                             <Welcome />
                           </Route>

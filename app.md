@@ -189,3 +189,36 @@ The `Context` component contains a counter, and method for changing the basket. 
     }
 ```
 
+## Client-server online-shop application
+
+The target of the project is creating an online-shop, so a separate unit for storing data (goods descriptions) is needed there. It should be a server that works on REST-principles. For the first time there is simple one, that processes data from plain `data.json` file. It can process CORS-requests and receives requests with urls, that contain parameters `:sector/:size/:color`. `Sector` is a caterory of goods (lux or casual). Size is size of lingery, color is color. The server filters data according with REST parameters and returns json-responses to a browser. Server can also separate goods belonged to the toplist category. 
+
+The command to run the server is `node index`. It must be executed in the `./server` folder. The running server is listen on port 3001.
+
+The router of application now gets more options:  the content of the Showcase component can be changed according with parameters of a route (sector, size, color):
+
+```
+      <Route path="/api/:sector/:size" render={props=> <Showcase {...props.match.params}/>} />
+      <Route path="/api/toplist" render={props=> <Showcase toplist="true"/>} />
+      <Route path="/api/basket"  render={props=> <Showcase basket="true" />}/>
+```
+
+The LeftMenu component is also be changed:
+
+```
+      <a href="#/api/toplist" class="list-group-item">Top List</a>
+      <a href="#/api/casual/regular" class="list-group-item">Casual regular</a>
+      <a href="#/api/casual/large" class="list-group-item">Casual large</a>
+      <a href="#/api/lux/regular" class="list-group-item">Lux reguar</a>
+      <a href="#/api/lux/large" class="list-group-item">Lux large</a>
+```
+
+So, now the Showcase component can reflect toplist, basket or user's choice according with sector, size and color parameters (the last one will be realized in a next versions of the software).
+
+
+
+
+
+
+
+

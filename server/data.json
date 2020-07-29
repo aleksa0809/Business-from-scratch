@@ -1,0 +1,103 @@
+[
+    {
+        "id": 1,
+        "name": "123",
+        "sector": "casual",
+        "size": "large",
+        "color": "red",
+        "price": "123",
+        "description": "123",
+        "toplist": true,
+        "picture": "005.png"
+    },
+    {
+        "id": 2,
+        "name": "123",
+        "sector": "casual",
+        "size": "regular",
+        "color": "green",
+        "price": "123",
+        "description": "123",
+        "toplist": true
+    },
+    {
+        "id": 3,
+        "name": "123",
+        "sector": "casual",
+        "size": "regular",
+        "color": "while",
+        "price": "123",
+        "description": "123",
+        "toplist": true
+    },
+    {
+        "id": 4,
+        "name": "123",
+        "sector": "lux",
+        "size": "large",
+        "color": "blue",
+        "price": "123",
+        "description": "123",
+        "toplist": false
+    },
+    {
+        "id": 5,
+        "name": "123",
+        "sector": "lux",
+        "size": "regular",
+        "color": "black",
+        "price": "123",
+        "description": "123",
+        "toplist": false
+    },
+    {
+        "id": 6,
+        "name": "123",
+        "sector": "casual",
+        "size": "large",
+        "color": "black",
+        "price": "123",
+        "description": "123",
+        "toplist": false
+    },
+    {
+        "id": 7,
+        "name": "123",
+        "sector": "casual",
+        "size": "regular",
+        "color": "blue",
+        "price": "123",
+        "description": "123",
+        "toplist": false
+    },
+    {
+        "id": 8,
+        "name": "123",
+        "sector": "casual",
+        "size": "regular",
+        "color": "red",
+        "price": "123",
+        "description": "123",
+        "toplist": false
+    },
+    {
+        "id": 9,
+        "name": "123",
+        "sector": "lux",
+        "size": "large",
+        "color": "white",
+        "price": "123",
+        "description": "123",
+        "toplist": false
+    },
+    {
+        "id": 10,
+        "name": "123",
+        "sector": "lux",
+        "size": "regular",
+        "color": "green",
+        "price": "123",
+        "description": "123",
+        "toplist": false
+    }
+]
