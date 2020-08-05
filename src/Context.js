@@ -4,17 +4,24 @@ import 'react-toastify/dist/ReactToastify.css'
 //import data from './data'
 
 const message = (msg)=> toast(msg) || true
-let basket = window.localStorage.getItem('basket') || '[]'
-basket = JSON.parse(basket)
+const prefix = 'http://localhost:3001/api'  
+const basketFromStorage = window.localStorage.getItem('basket') || '[]'
 
 class AppContextProvider extends Component {
     constructor(props){
         super(props)
         this.state = {
-            data: [],
-            basketCount: basket.length,
-            getShowcase: (isBasket)=> {
-                return isBasket && basket || this.state.data;
+            showcase: [],
+            basket: JSON.parse(basketFromStorage),
+            getBasketCount: ()=> this.state.basket.length,
+            getShowcase: (props)=> {
+                const {sector, size, toplist, basket} = props  
+                if(basket) return this.state.basket;
+                const url = prefix + (toplist && '/toplist' || sector && size && `/${sector}/${size}`)  
+                fetch(url)
+                    .then(res=>res.json())
+                    .then(arr=> this.setState({showcase: arr}))
+                    .catch(err=> toast('An error is occured when fetching'))
             },
             changeBasket: (card)=> {
                 const isBasket = card.basket

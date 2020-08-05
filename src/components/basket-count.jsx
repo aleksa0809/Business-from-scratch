@@ -8,7 +8,7 @@ export default function BasketCount() {
       {context=> 
           (<ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                  <a className="nav-link av-basket-count" href="#/api/basket">Your shopping cart ({context.basketCount} items)</a>
+                  <a className="nav-link av-basket-count" href="#/api/basket">Your shopping cart ({context.getBasketCount()} items)</a>
               </li>
           </ul>)
       }
