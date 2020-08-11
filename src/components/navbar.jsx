@@ -11,10 +11,10 @@ export default function Navbar() {
                       <a className="nav-link" href="#">Home</a>
                   </li>
                   <li className="nav-item">
-                      <a className="nav-link" href="#/instagram">Instagram</a>
+                      <a className="nav-link" href="https://instagram.com">Instagram</a>
                   </li>
                   <li className="nav-item">
-                      <a className="nav-link" href="#/contacts">Contact</a>
+                      <a className="nav-link" href="mailto:admin@anna-veronica.com">Contact</a>
                   </li>
               </ul>
           </div>
