@@ -48,7 +48,11 @@ const Welcome   = React.lazy(() => import('./pages/welcome'));
 </div>
 ```
 
-For controlling the state of application there is `Context` component, that can provide some common variables and objects for all others components of the application. There is `react-tostify` :
+For controlling the state of application there is `Context` component, that can provide some common variables and objects for all others components of the application. There is also `react-tostify` library for informing a user about errors or successful actions:
+```
+yarn add react-toastify
+```
+
 
 ```
 import React, {Component} from "react"
@@ -61,8 +65,8 @@ class AppContextProvider extends Component {
     constructor(props){
         super(props)
         let basket = window.localStorage.getItem('basket') || '[]'
-        basket = JSON.parse(basket)
-        this.state = {
+        basket = JSON.parse(basket)//localStorage contains strings, so I transform  into the objects
+        this.state = { //this object is shared between components
             counter: basket.length,
             increment: ()=> message('Added to chart') && this.setState({counter: ++this.state.counter}),
             decrement: ()=> this.state.counter && message('Removed from chart') && this.setState({counter: --this.state.counter}),
@@ -100,7 +104,7 @@ and then
 ```
 export default function Showcase(props) {
   const {basket} = props
-  const header = basket && 'Your basket' || 'Our showcase'
+  const header = basket && 'Your basket' || 'Our showcase' //conditional rendering
   return (
      <div className="av-page">
          <h1>{header}</h1>
@@ -109,7 +113,7 @@ export default function Showcase(props) {
 }
 ```
 
-Goods of online shop should be presented as cards with description, proce, image etc. These cards are designed as a separate component. As cards appear on pages dynamically, they will be formed with help of `AppContextProvider` component. If property `basket` is set to true, cards are parsed from localStorage, if not - from "database" stub, that is imported into the `Context` component as a simple array.
+Goods of online shop should be presented as cards with description, price, image, etc. These cards are designed as a separate component. As cards appear on pages dynamically, they will be formed with help of `AppContextProvider` component. If property `basket` is set to true, cards are parsed from localStorage, if not - from "database" stub, that is imported into the `Context` component as a simple array.
 ```
 import data from './data'
 ...
@@ -129,8 +133,8 @@ class AppContextProvider extends Component {
 ```
 
 ```
-<AppContextConsumer>
-    {context=> { 
+<AppContextConsumer> //takes state
+    {context=> { //context= state
      ...
      const items = []  
      for(const card of context.getShowcase(props.basket)) {
@@ -141,12 +145,12 @@ class AppContextProvider extends Component {
          <div className="av-page">
              <h1>{header}</h1>
              <div class="row">
-                 {items}
+                 {items}//dynamically set of cards 
              </div>
          </div>
     )}
    }
-</AppContextConsumer>
+</AppContextConsumer> 
 
 ```
 
@@ -186,10 +190,10 @@ The `Context` component contains a counter, and method for changing the basket. 
             this.setState({basketCount: isBasket && --this.state.basketCount || ++this.state.basketCount})
             toast('The state of your basket is changed')
         }
-    }
+    }//proof of concept is over here
 ```
 
-## Client-server online-shop application
+## Client-server online-shop application (from concept to prototype)
 
 The target of the project is creating an online-shop, so a separate unit for storing data (goods descriptions) is needed there. It should be a server that works on REST-principles. For the first time there is simple one, that processes data from plain `data.json` file. It can process CORS-requests and receives requests with urls, that contain parameters `:sector/:size/:color`. `Sector` is a caterory of goods (lux or casual). Size is size of lingery, color is color. The server filters data according with REST parameters and returns json-responses to a browser. Server can also separate goods belonged to the toplist category. 
 

@@ -1,103 +1,114 @@
 [
     {
         "id": 1,
-        "name": "123",
+        "name": "Evening rose",
         "sector": "casual",
         "size": "large",
-        "color": "red",
-        "price": "123",
-        "description": "123",
+        "color": "black",
+        "price": "11",
+        "description": "very good for yoga",
         "toplist": true,
         "picture": "005.png"
     },
     {
         "id": 2,
-        "name": "123",
+        "name": "Comfort",
         "sector": "casual",
         "size": "regular",
-        "color": "green",
-        "price": "123",
-        "description": "123",
-        "toplist": true
+        "color": "black and pink",
+        "price": "12",
+        "description": "only you",
+        "toplist": true,
+        "picture": "055.png"
     },
     {
         "id": 3,
-        "name": "123",
+        "name": "Mari",
         "sector": "casual",
         "size": "regular",
         "color": "while",
-        "price": "123",
-        "description": "123",
-        "toplist": true
+        "price": "13",
+        "description": "beautiful for eveyday in summer",
+        "toplist": true,
+        "picture": "006.png"
     },
     {
         "id": 4,
-        "name": "123",
+        "name": "Marina",
         "sector": "lux",
         "size": "large",
         "color": "blue",
-        "price": "123",
-        "description": "123",
-        "toplist": false
+        "price": "14",
+        "description": "perfect with any clothes",
+        "toplist": false,
+        "picture": "007.png"
     },
     {
         "id": 5,
-        "name": "123",
+        "name": "Sofi",
         "sector": "lux",
         "size": "regular",
         "color": "black",
-        "price": "123",
+        "price": "15",
         "description": "123",
-        "toplist": false
+        "toplist": false,
+        "picture": "008.png"
     },
     {
         "id": 6,
-        "name": "123",
+        "name": "Kitty",
         "sector": "casual",
         "size": "large",
         "color": "black",
-        "price": "123",
-        "description": "123",
-        "toplist": false
+        "price": "16",
+        "description": "very simple open lace",
+        "toplist": false,
+        "picture": "009.png"
     },
     {
         "id": 7,
-        "name": "123",
+        "name": "Viktoria",
         "sector": "casual",
         "size": "regular",
         "color": "blue",
-        "price": "123",
+        "price": "17",
         "description": "123",
-        "toplist": false
+        "toplist": false,
+        "picture": "009.png"
+
     },
     {
         "id": 8,
-        "name": "123",
+        "name": "Shampagne",
         "sector": "casual",
         "size": "regular",
-        "color": "red",
-        "price": "123",
-        "description": "123",
-        "toplist": false
+        "color": "black",
+        "price": "18",
+        "description": "low ",
+        "toplist": false,
+        "picture": "010.png"
+
     },
     {
         "id": 9,
-        "name": "123",
+        "name": "Freedom",
         "sector": "lux",
         "size": "large",
-        "color": "white",
-        "price": "123",
-        "description": "123",
-        "toplist": false
+        "color": "back and red",
+        "price": "19",
+        "description": "very beautiful for special occasions",
+        "toplist": false,
+        "picture": "011.png"
     },
     {
         "id": 10,
-        "name": "123",
+        "name": "Lace panties",
         "sector": "lux",
         "size": "regular",
-        "color": "green",
-        "price": "123",
-        "description": "123",
-        "toplist": false
+        "color": "sligt dark blue",
+        "price": "20",
+        "description": "lace",
+        "toplist": false,
+        "picture": "012.png"
     }
 ]
