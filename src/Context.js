@@ -24,10 +24,23 @@ class AppContextProvider extends Component {
                     .catch(err=> toast('An error is occured when fetching'))
             },
             changeBasket: (card)=> {
-                const isBasket = card.basket
-                if(isBasket && !this.state.basketCount) {this.setState({basketCount:0}); return}
-                this.setState({basketCount: isBasket && --this.state.basketCount || ++this.state.basketCount})
-                toast('The state of your basket is changed')
+                const toRemove = card.basket
+                let item = this.state.basket.find(el=>el.id == card.id)
+                let {basket} = this.state
+                if(item && !toRemove){
+                    toast('Such item already presents in your basket.')
+                    return
+                }
+                if(toRemove) {
+                    basket = basket.filter(el=>el.id != card.id) 
+                    toast('The item is removed from your basket.')
+                }
+                else {
+                    basket.push(card)
+                    toast('The item is added into your basket.')
+                }
+                this.setState({basket}) 
+                localStorage.setItem('basket', JSON.stringify(basket))
             }
         }
     }

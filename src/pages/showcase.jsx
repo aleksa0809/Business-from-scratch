@@ -7,7 +7,7 @@ export default function Showcase(props) {
     const getCards = (arr)=> {
         const cards = []
         for(const card of arr){
-            cards.push(<Card image={card.picture && "/images/" + card.picture} {...card} basket={!!card.basket}/>)
+            cards.push(<Card image={card.picture && "/images/" + card.picture} {...card} basket={!!props.basket}/>)
         }
         return cards
     }

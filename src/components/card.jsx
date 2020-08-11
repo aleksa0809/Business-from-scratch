@@ -5,7 +5,6 @@ import './card.css'
 const getButtonText = isBasket=> isBasket ? 'Remove from basket' : 'Add to cart'
 
 export default function Card(props) {
-    console.log(props)
     return (
               <div className="col-lg-4 col-md-6 mb-4">
                 <div className="card h-100">
