@@ -11,7 +11,7 @@ export default function Navbar() {
                       <a className="nav-link" href="#">Home</a>
                   </li>
                   <li className="nav-item">
-                      <a className="nav-link" href="https://instagram.com">Instagram</a>
+                      <a className="nav-link" href="https://www.instagram.com/aleksandra787877/?hl=sv">Instagram</a>
                   </li>
                   <li className="nav-item">
                       <a className="nav-link" href="mailto:admin@anna-veronica.com">Contact</a>
