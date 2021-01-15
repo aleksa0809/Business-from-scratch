@@ -1,4 +1,6 @@
-# Creating React SPA for online shop
+# Creating React SPA for online 
+## Structure of application
+
 
 First of all, it is needed to choose a css-framework for web page appearence. The bootstrap 4.7 is used for this perpous. The changes of `app.html`:
 

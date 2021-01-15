@@ -1,3 +1,19 @@
+## Quick start 
+
+For starting up the application a user needs to terminals: for frontend and backand servers. In the first terminal run this: 
+
+```
+yarn
+yarn start
+```
+
+In the second terminal run this: 
+
+```
+cd server 
+node index 
+```
+
 # A single page application: setup and running  
 
 ## Fixing previous state of project

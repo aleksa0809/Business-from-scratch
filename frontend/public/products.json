@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Item One",
+        "price": 123.45,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!"
+    },
+    {
+        "id": 2,
+        "title": "Item Two",
+        "price": 223.45,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!"
+    },
+    {
+        "id": 3,
+        "title": "Item Three",
+        "price": 323.45,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!"
+    }
+]

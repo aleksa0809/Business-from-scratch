@@ -1,0 +1,26 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template/shop-homepage)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+body {
+    padding-top: 56px;
+}
+
+.showcase {
+    margin-top: 32px;
+    margin-left: 32px;
+}
+
+.showcase h1 {
+    text-align: center;
+}
+
+.av-left-side-menu {
+  margin-top: 24px;
+}
+
+.card-footer p {
+    display: flex;
+    justify-content: space-around;
+}
