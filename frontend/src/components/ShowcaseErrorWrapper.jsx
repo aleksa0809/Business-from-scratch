@@ -5,7 +5,7 @@ function ErrorFallback({error, resetErrorBoundary}) {
   setTimeout(resetErrorBoundary, 5000)
   return (
     <div className="showcase">
-      <h1>Something went wrong</h1>
+      <h2>Something went wrong</h2>
       <p>Be patient, you will be redirected to our top list in a short time...</p>
     </div>
   )

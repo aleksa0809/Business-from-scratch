@@ -39,7 +39,7 @@ export default function (props) {
 
     return (
         <div className="showcase">
-            <h1>{headline}</h1>
+            <h2>{headline}</h2>
             <Cards products={products} resetBasket={resetBasket}/> 
         </div> 
     )

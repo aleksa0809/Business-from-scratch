@@ -20,7 +20,8 @@ body {
   margin-top: 24px;
 }
 
-.card-footer p {
+.card-footer p, .basket-bottom {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 2rem;
 }

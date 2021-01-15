@@ -3,8 +3,10 @@ import Carousel from './Carousel'
 export default function(props){
     return (
       <> 
-        <Carousel />
-        <p>Welcome!</p>
+        <div className="showcase">
+            <h2>Welcome!</h2>
+            <Carousel />
+        </div>
       </>
     )
 }
