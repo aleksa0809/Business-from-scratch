@@ -1,230 +1,33 @@
-# Creating React SPA for online 
-## Structure of application
+# Anna Veronica Web Shop application: how does it work
 
+## Used client technologies
 
-First of all, it is needed to choose a css-framework for web page appearence. The bootstrap 4.7 is used for this perpous. The changes of `app.html`:
+The client part of the application (frontend) is written with React framework. The following technologies are used in it:
 
-```
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    ...
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-```
+* React hooks `useState`, `createContext`, `useContext` for transmissing the state of application between components (`BasketContext`, `Basket`, `Total`, `Card`);
+* `prop-types` for controlling types of context elements (`BasketContext`);
+* `HashRouter` for navigating (`App`);
+* `ErrorBoundary` hook (`Showcase`);
+* `async/await` functions, promises (`Showcase`);
+* `localStorage` for saving state between usings of application(`Basket`).
 
-The next step is creating of a structure of the page. There are `Navbar` and `LeftMenu` components on the top and left sides on page respectively:
+Needed dependencies are listed in `package.json` file.
 
-```
-<div>  
-    <Navbar />
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <LeftMenu />
-            </div>
-            <div class="col-lg-9">
-                <p>Here will be pages.</p>
-            </div>
-        </div>
-    </div>
-</div>
-```
+## Used server technologies
 
-Now it's time to add some router to the main part of page. There is also a `Welcome` space, that appears on the central part of page:
+As client and server parts work on separate ports during the development, the CORS technology is used. The server is very simple. It serves request for reading and filtering data only, not for inserting/updating/deleting. Changing of 'database'  can be made by editing the json file, that plays this role.
 
-```
-yarn add react-router-dom
-```
+## Workflow
 
-```
-import { HashRouter, Route, Switch } from 'react-router-dom'
-const Welcome   = React.lazy(() => import('./pages/welcome'));
-...
-<div class="col-lg-9">
-  <HashRouter>
-    <Switch>
-      <Route>
-        <Welcome />
-      </Route>
-    </Switch>
-  </HashRouter>
-</div>
-```
+The `LeftMenu` component contains links that show different sets of product according with `segment` and `size` parameters. There is also `toplist` link, that shows most popular products. Sets of products data are delivered in `Showcase` component with asyncronous `fetch` function. The `Showcase` component is bound with error handler, that shows "Something went wrong" message if there was an error during http transmission.
 
-For controlling the state of application there is `Context` component, that can provide some common variables and objects for all others components of the application. There is also `react-tostify` library for informing a user about errors or successful actions:
-```
-yarn add react-toastify
-```
+The information about products is presented as set of cards. Each of them contains title, description, price, amount of a product. An user can click "To basket" button to place a product into the basket. 
 
+The basket is organized as item of application's internal state. It is reactive, i.e. can be changed and viewed in any component of application. React hooks `createContext` and `useContext` are used for this purpous. The basket contains cards that are similar with `Showcase` cards, but cards of the basket have two buttons: "More" and "Less". Pressing them user can increase or decrease amount of items that he/she intend to buy. If amount of a product is decreased to 0, such
+item become a candidat to remove from the basket. After confirming this situation by user, shuch item goes out from the basket.
 
-```
-import React, {Component} from "react"
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+On the top menu bar there is the `Total` component. It calculates the total price of the basket. It changes it's digits dynamically. It also has a link for showing the basket content.
 
-const message = (msg)=> toast(msg) || true
-
-class AppContextProvider extends Component {
-    constructor(props){
-        super(props)
-        let basket = window.localStorage.getItem('basket') || '[]'
-        basket = JSON.parse(basket)//localStorage contains strings, so I transform  into the objects
-        this.state = { //this object is shared between components
-            counter: basket.length,
-            increment: ()=> message('Added to chart') && this.setState({counter: ++this.state.counter}),
-            decrement: ()=> this.state.counter && message('Removed from chart') && this.setState({counter: --this.state.counter}),
-            clear: ()=> window.localStorage.setItem('basket', '[]') || this.setState({counter: 0})
-        }
-    }
-    render() {
-        return <Provider value={this.state}><ToastContainer />{this.props.children}</Provider>;
-    }
-}
-
-const {Provider, Consumer} = React.createContext();
-export {AppContextProvider, Consumer as AppContextConsumer};
-```
-
-The next step is to organize a showcase - a presentation of goods, that is provided by the online shop. A user should have an abilities to view goods, to choose them into personal basket, to view the basket.
-
-The appearence of goods must look identically on all pages, so, only one component is used for showing items - the `Showcase` component. Its look changes depending of parameters (conditional rendering). They present in links of `LeftMenu` component and are transported via the `HashRouter`^:
-
-```
-  <HashRouter>
-    <Switch>
-      <Route path="/api/showcase" render={props=> <Showcase {...props.match.params} />} />
-      <Route path="/api/basket" render={props=> <Showcase {...props.match.params} basket="true" />}/>
-      <Route>
-        <Welcome />
-      </Route>
-    </Switch>
-  </HashRouter>
-```
-
-and then
-
-
-```
-export default function Showcase(props) {
-  const {basket} = props
-  const header = basket && 'Your basket' || 'Our showcase' //conditional rendering
-  return (
-     <div className="av-page">
-         <h1>{header}</h1>
-     </div>
-  )
-}
-```
-
-Goods of online shop should be presented as cards with description, price, image, etc. These cards are designed as a separate component. As cards appear on pages dynamically, they will be formed with help of `AppContextProvider` component. If property `basket` is set to true, cards are parsed from localStorage, if not - from "database" stub, that is imported into the `Context` component as a simple array.
-```
-import data from './data'
-...
-let basket = window.localStorage.getItem('basket') || '[]'
-basket = JSON.parse(basket)
-...
-class AppContextProvider extends Component {
-    ...
-    this.state = {
-        counter: basket.length,
-        getShowcase: (isBasket)=> {
-            return isBasket && basket || data;
-        }
-    }
-    ...
-}
-```
-
-```
-<AppContextConsumer> //takes state
-    {context=> { //context= state
-     ...
-     const items = []  
-     for(const card of context.getShowcase(props.basket)) {
-         items.push(<Card image={card.picture && "/images/"+card.picture || "http://placehold.it/700x400"} {...card} basket={!!basket}/>)
-     }
-     ...
-     return (
-         <div className="av-page">
-             <h1>{header}</h1>
-             <div class="row">
-                 {items}//dynamically set of cards 
-             </div>
-         </div>
-    )}
-   }
-</AppContextConsumer> 
-
-```
-
-There is the `BasketCount` component, thet reflects the count of itens in users basket. This component reacts on adding items to basket or removing them.
-
-```
-    <AppContextConsumer>
-      {context=> 
-          (<ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                  <a className="nav-link av-basket-count" href="#/api/query/basket">Your shopping cart ({context.basketCount} items)</a>
-              </li>
-          </ul>)
-      }
-    </AppContextConsumer>
-```
-
-The `Context` component contains a counter, and method for changing the basket. Each `Card` component of `Showcase` component contains a button for adding/removing items:
-
-```
-    <AppContextConsumer>
-        {context=> 
-            <button onClick={e=> context.changeBasket(props)}>{getButtonText(props.basket)}</button>
-        }
-    </AppContextConsumer>
-```
-
-```
-    this.state = {
-        basketCount: basket.length,
-        getShowcase: (isBasket)=> {
-            return isBasket && basket || data;
-        },
-        changeBasket: (card)=> {
-            const isBasket = card.basket
-            if(isBasket && !this.state.basketCount) return
-            this.setState({basketCount: isBasket && --this.state.basketCount || ++this.state.basketCount})
-            toast('The state of your basket is changed')
-        }
-    }//proof of concept is over here
-```
-
-## Client-server online-shop application (from concept to prototype)
-
-The target of the project is creating an online-shop, so a separate unit for storing data (goods descriptions) is needed there. It should be a server that works on REST-principles. For the first time there is simple one, that processes data from plain `data.json` file. It can process CORS-requests and receives requests with urls, that contain parameters `:sector/:size/:color`. `Sector` is a caterory of goods (lux or casual). Size is size of lingery, color is color. The server filters data according with REST parameters and returns json-responses to a browser. Server can also separate goods belonged to the toplist category. 
-
-The command to run the server is `node index`. It must be executed in the `./server` folder. The running server is listen on port 3001.
-
-The router of application now gets more options:  the content of the Showcase component can be changed according with parameters of a route (sector, size, color):
-
-```
-      <Route path="/api/:sector/:size" render={props=> <Showcase {...props.match.params}/>} />
-      <Route path="/api/toplist" render={props=> <Showcase toplist="true"/>} />
-      <Route path="/api/basket"  render={props=> <Showcase basket="true" />}/>
-```
-
-The LeftMenu component is also be changed:
-
-```
-      <a href="#/api/toplist" class="list-group-item">Top List</a>
-      <a href="#/api/casual/regular" class="list-group-item">Casual regular</a>
-      <a href="#/api/casual/large" class="list-group-item">Casual large</a>
-      <a href="#/api/lux/regular" class="list-group-item">Lux reguar</a>
-      <a href="#/api/lux/large" class="list-group-item">Lux large</a>
-```
-
-So, now the Showcase component can reflect toplist, basket or user's choice according with sector, size and color parameters (the last one will be realized in a next versions of the software).
-
-
-
-
-
-
-
+After collectint needed items in the basket, user should order his/her purchases by pressing related button. The `Order` component consists of a table with characteristics of choosen products and form for collecting user's personal data. The form is connected with a validation library (`Formik`). After correct fulfilling the form congratulation message about successfull purchase appears. This message is a stub (mock) that is present instead of real sending data to server code. When
+the purchase ends sucessfully, the basket becomes empty.
 
